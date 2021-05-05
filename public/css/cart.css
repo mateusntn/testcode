@@ -53,21 +53,22 @@ main {
     text-align: center;
 }
 
-.product .quantity input {
-    width: 50px;
-    height: 30px;
-    padding: 5px;
-    border: 2px solid var(--color-first);
-    margin-bottom: 5px;
-}
-
 .product .quantity .qtd {
     font-weight: bold;
 }
 
-.product .quantity p:nth-child(2) {
+.product .quantity button {
     font-size: 13px;
     text-decoration: underline;
+    border: none;
+    background: none;
+    margin-top: 10px;
+    color: var(--color-third);
+    cursor: pointer;
+}
+
+.product .quantity button:hover {
+    color: #c23616;
 }
 
 .purchase {

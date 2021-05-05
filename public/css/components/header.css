@@ -73,3 +73,8 @@ header nav i {
     font-size: 30px;
 }
 
+header nav button {
+    background: none;
+    border: none;
+}
+

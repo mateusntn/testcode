@@ -5,6 +5,7 @@ const productsController = {
         const products = await Product.findAll({
             include: ['scents', 'sizes', 'models', 'imgs', 'items']
         });
+
         return res.render('index',{listProducts: products});
     },
 
@@ -14,7 +15,6 @@ const productsController = {
             include: ['scents', 'sizes', 'models', 'imgs', 'items']
         })
         return res.render('products',{product});
-        // return res.json(product);
     },
 
     create: async (req, res) => {

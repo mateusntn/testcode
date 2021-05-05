@@ -3,7 +3,22 @@ const { Order, sequelize} = require('../models/');
 const ordersController = {
     index: async (req, res) => {
         const orders = await Order.findAll();
-        return res.render('cart');
+        return res.json(orders);
+    },
+
+    filterByUser: async (req,res) => {
+        const {id} = req.session.userLoged;
+
+        const orders = await Order.findAll({
+            where: {users_id: id}
+        });
+
+        console.log(orders)
+        return res.redirect('profile', {orders});
+    },
+
+    showCartPage: async (req,res) => {
+        return res.render('cart')
     },
 
     create: async (req, res) => {

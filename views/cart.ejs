@@ -14,7 +14,7 @@
 </head>
 <body>
     <header>
-        <a href="#" title="Pagina inicial">
+        <a href="/" title="Pagina inicial">
             <img class="logo" src="/img/logo-candelae.png" alt="Logo candelae">
         </a>
         <form class="search">
@@ -24,13 +24,13 @@
             </button>
         </form>
         <nav>
-            <a href="#">Sobre nós</a>
+            <a href="/scents/about">Sobre nós</a>
             <div class="vertical-bar"></div>
             <div class="icons">
-                <a href="#" title="Perfil">
+                <a href="/users/profile" title="Perfil">
                     <i class="fas fa-user-circle"></i>
                 </a>
-                <a href="#" title="Carrinho">
+                <a href="/orders/cart" title="Carrinho">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </div>
@@ -104,6 +104,7 @@
     <script>
         let cart = JSON.parse(localStorage.getItem("order"));
         let produtos = "";
+        let counter = 0;
         for (product of cart.products) {
             produtos += `
             <div class="product">
@@ -114,17 +115,18 @@
                         <p class="value">R$ ${product.value},00</p>
                     </div>
                     <div class="quantity">
-                        <p class="qtd">Quantidade: ${product.quantProducts}</p>
-                        <p>Excluir</p>
+                        <p class="qtd">Quantidade: ${product.quantProducts? product.quantProducts : 1}</p>
+                        <button onclick="deleteItem(${counter})">Excluir</button>
                     </div>
             </div>
             `
+            counter ++
         }
         document.getElementById('carrinho').innerHTML = produtos
 
         let sum = 0;
         for (product of cart.products) {
-            sum += parseFloat(product.value) * parseFloat(product.quantProducts);
+            sum += parseFloat(product.value) * parseFloat(product.quantProducts ? product.quantProducts : 1);
         }
 
         
@@ -137,6 +139,14 @@
                     </div>
         `
         document.querySelector(".finish").insertAdjacentHTML('afterbegin',values);
+
+        function deleteItem ( index ) {
+            let cartRemove = JSON.parse(localStorage.getItem('order'));
+            cartRemove.products.splice(index, 1);
+            console.log(cartRemove)
+            localStorage.setItem('order', JSON.stringify(cartRemove));
+            window.location.reload(true);
+        }
 
     </script>
 </body>

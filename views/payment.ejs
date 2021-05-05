@@ -14,23 +14,23 @@
 </head>
 <body>
     <header>
-        <a href="#" title="Pagina inicial">
-            <img class="logo" src="img/logo-candelae.png" alt="Logo candelae">
+        <a href="/" title="Pagina inicial">
+            <img class="logo" src="/img/logo-candelae.png" alt="Logo candelae">
         </a>
         <form class="search">
             <input class="search-bar" type="text">
             <button title="Pesquisar">
-                <img src="img/search-icon.png" alt="">
+                <img src="/img/search-icon.png" alt="">
             </button>
         </form>
         <nav>
-            <a href="#">Sobre nós</a>
+            <a href="/scents/about">Sobre nós</a>
             <div class="vertical-bar"></div>
             <div class="icons">
-                <a href="#" title="Perfil">
+                <a href="/users/profile" title="Perfil">
                     <i class="fas fa-user-circle"></i>
                 </a>
-                <a href="#" title="Carrinho">
+                <a href="/orders/cart" title="Carrinho">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </div>
@@ -174,41 +174,37 @@
         `
         document.querySelector(".prices_purchase").insertAdjacentHTML('afterbegin',values);
 
-        async function finishOrder () {
+        function finishOrder () {
 
-            const response2 = await fetch("http://localhost:3000/orders", {
+            fetch("http://localhost:3000/orders", {
                 "method": "POST",
                 "headers": {
                     "Content-Type": "application/json"
                 },
                 "body": `{\"shipping\":\"${sum}\",\"amount\":\"${sum}\",\"users_id\":\"7\",\"formPayments_id\":\"2\",\"order_status\":\"Em andamento\"}`
-                })
-                .then(response => {
-                    console.log("Dentro do then")
-                    console.log(response.toJSON());
+            })
+            .then(response => response.json())
+                .then(data => {
                     for (product of cart.products) {
-                        // fetch("http://localhost:3000/order_items", {
-                        // "method": "POST",
-                        // "headers": {
-                        //     "Content-Type": "application/json"
-                        // },
-                        // "body": `{\"orders_id\":\"${response.id}\",\"products_id\":\"${product.id}\",\"quantProducts\":\"${product.quantProducts}\"}`
-                        // })
-                        // .then(response => {
-                        // console.log(response);
-                        // })
-                        // .catch(err => {
-                        // console.error(err);
-                        // });
+                        fetch("http://localhost:3000/order_items", {
+                        "method": "POST",
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "body": `{\"orders_id\":\"${data.id}\",\"products_id\":\"${product.id}\",\"quantProducts\":\"${product.quantProducts}\"}`
+                        })
+                        .then(response => {
+                        console.log(response);
+                        })
+                        .catch(err => {
+                        console.error(err);
+                        });
                     }
                 })
                 .catch(err => {
                 console.error(err);
             });
 
-            console.log(await response2)
-
-            
         }
     </script>
 </body>

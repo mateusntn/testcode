@@ -135,6 +135,12 @@ article.adress_choices .form_adress .adress_details .number{
     margin-top: 20px;
     border: none;
     background-color: var(--color-button);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button_purchase button:hover {
+    background-color: #246d05;
 }
 
 @media (max-width: 940px) {

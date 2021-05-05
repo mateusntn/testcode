@@ -14,7 +14,7 @@
 </head>
 <body>
     <header>
-        <a href="#" title="Pagina inicial">
+        <a href="/" title="Pagina inicial">
             <img class="logo" src="/img/logo-candelae.png" alt="Logo candelae">
         </a>
         <form class="search">
@@ -24,13 +24,13 @@
             </button>
         </form>
         <nav>
-            <a href="/about">Sobre nós</a>
+            <a href="/scents/about">Sobre nós</a>
             <div class="vertical-bar"></div>
             <div class="icons">
-                <a href="#" title="Perfil">
+                <a href="/users/profile" title="Perfil">
                     <i class="fas fa-user-circle"></i>
                 </a>
-                <a href="#" title="Carrinho">
+                <a href="/orders/cart" title="Carrinho">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </div>
@@ -60,7 +60,6 @@
                 <div class="scent">
                     <h2>Aroma:</h2>                
                     <select id="scent">
-                        <option selected disabled value=""> Selecione </option>
                         <% for (scent of product.scents) { %>
                             <option><%= scent.name %></option>
                         <% } %>
@@ -68,7 +67,7 @@
                 </div>
                 <div class="quant">
                     <h2>Quantidade:</h2>
-                    <input type="number" name="quant" id="quant">
+                    <input type="number" name="quant" id="quant" value="1">
                 </div>
                 
             </div>
@@ -85,7 +84,7 @@
         <section class="price">
             <div>
                 <h1>R$ <%= product.value %>,00</h1>
-                <button class="buy" type="button" onclick="window.location.href = '/orders', addCart(
+                <button class="buy" type="button" onclick="window.location.href = '/orders/cart', addCart(
                     '<%= product.id%>',
                     '<%= product.name%>',
                     '<%= product.value%>',

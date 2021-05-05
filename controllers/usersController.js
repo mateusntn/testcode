@@ -1,4 +1,4 @@
-const { User, sequelize} = require('../models/');
+const { User, Order, sequelize} = require('../models/');
 const bcrypt = require('bcryptjs');
 
 const usersController = {
@@ -8,42 +8,55 @@ const usersController = {
     },
 
     create: async (req, res) => {
-        const { register_name, register_email, phone, cpf, register_password } = req.body;
-        const passwordCrypt = bcrypt.hashSync(register_password, 10);
-        const newUser = await User.create({name: register_name, email: register_email, phone, cpf, password: register_password});
-        return res.redirect(`/users/${newUser.id}`);
+        const { name, email, phone, cpf, password } = req.body;
+        const passwordCrypt = bcrypt.hashSync(password, 10);
+        const newUser = await User.create({name, email, phone, cpf, password: passwordCrypt});
+        return res.redirect(`/users/login`);
     },
 
     auth: async (req, res) => {
         const { login_email, login_password } = req.body;
 
-        const user = await User.findOne({where: { email: login_email }});
-
+        const user = await User.findOne({where: { email: login_email }}); 
         if (user && bcrypt.compareSync(login_password, user.password)) {
             req.session.userLoged = user;
             return res.redirect('/'); 
         } else {
-            return res.redirect('/users')
+            return res.redirect('/users/login')
         }
     },
 
     showProfilePage: async (req,res) => {
-        const { id } = req.params;
+        const { id } = req.session.userLoged;
         const user = await User.findByPk(id);
-        return res.render('profile', {user})
+        const orders = await Order.findAll({
+            where: {users_id: id}
+        });
+
+        return res.render('profile', {user, orders})
+    },
+
+    showEditPage: async (req,res) => {
+        return res.render('editProfile');
+    },
+
+    showRegisterPage: async (req, res) => {
+        return res.render('register');
     },
 
     showLoginPage: async (req, res) => {
-        return res.render('cadastro-login');
+        return res.render('login');
     },
 
     update: async (req, res) => {
-        const {id} = req.params;
+        const {id} = req.session.userLoged;
         const { name, email, phone, cep, cpf, password } = req.body;
 
-        const userUpdated = await User.update({name, email, phone, cep, cpf, password},{where: {id}});
+        const passwordCrypt = bcrypt.hashSync(password, 10);
 
-        return res.json(userUpdated);
+        const userUpdated = await User.update({name, email, phone, cep, cpf, password: passwordCrypt},{where: {id}});
+
+        return res.redirect('/users/profile');
     },
 
     delete: async (req,res) => {
