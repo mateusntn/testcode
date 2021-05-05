@@ -5,22 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candelae</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/components/header.css">
-    <link rel="stylesheet" href="css/components/footer.css">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
         <a href="#" title="Pagina inicial">
-            <img class="logo" src="img/logo-candelae.png" alt="Logo candelae">
+            <img class="logo" src="/img/logo-candelae.png" alt="Logo candelae">
         </a>
         <form class="search">
             <input class="search-bar" type="text">
             <button title="Pesquisar">
-                <img src="img/search-icon.png" alt="">
+                <img src="/img/search-icon.png" alt="">
             </button>
         </form>
         <nav>
@@ -38,15 +38,16 @@
     </header>
     <main>
             <div class="header-profile">
-                <img src="/img/vela.jpg" alt="Foto de perfil" class="profile-pic">
+                <img src="/img/lumos.jpg" alt="Foto de perfil" class="profile-pic">
                     <button class="edit">Editar <i class="far fa-edit"></i> </button>
             </div>
             <div class="info-profile">
                 <ul>
-                    <li><span>Nome:</span> Fulaninho do Grau</li>
-                    <li><span>E-mail:</span> fulaninho_dograu@gmail.com</li>
-                    <li><span>CPF:</span> 111.111.111-11</li>
-                    <li><span>CEP:</span> 55555-555</li>
+                    <li><span>Nome:</span> <%= user.name %></li>
+                    <li><span>E-mail:</span> <%= user.email %></li>
+                    <li><span>Telefone:</span> <%= user.phone %></li>
+                    <li><span>CPF:</span> <%= user.cpf %></li>
+                    <li><span>CEP:</span> <%= user.cep %></li>
                 </ul>
             </div>
     </main>

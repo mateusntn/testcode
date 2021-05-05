@@ -6,6 +6,14 @@ const scentsController = {
         return res.json(scents);
     },
 
+    showAboutPage: async (req,res) => {
+        return res.render('about')
+    },
+
+    showScentsPage: async (req, res) => {
+        return res.render('scents');
+    },
+
     create: async (req, res) => {
         const { name, description } = req.body;
         const newscent = await Scent.create({ name, description });

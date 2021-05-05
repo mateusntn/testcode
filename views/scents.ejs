@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candelae</title>
+    <title>Aromas</title>
+    <link rel="stylesheet" href="/css/scents.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/cart.css">
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
+
     <header>
         <a href="#" title="Pagina inicial">
             <img class="logo" src="/img/logo-candelae.png" alt="Logo candelae">
@@ -36,24 +38,69 @@
             </div>
         </nav>
     </header>
+
     <main>
-        <div class="products-total">
-            <section class="products" id="carrinho">
-                
-            </section>
-            <section class="purchase">
-                <h1 class="title">Carrinho</h1>
-                <div class="finish">
-                    
-                    <div class="buttons">
-                        <button onclick="window.location.href = '/formPayments'">CONTINUAR</button>
-                        <a href="/">Continuar a comprar</a>
-                    </div>
-                </div>
-            </section>
+
+
+        <h2 class="title">Sobre</h2>
+
+
+        <div class="links">
+            <a href="">Candelae</a>
+            <div class="vertical-line"></div>
+            <a class="current" href="#">Aromas</a>
         </div>
-        
+
+
+        <section>
+            <div class="Aromas">
+
+                <img src="/img/aromas.jpg" alt="Canela" class="img">
+
+                <div class="berg">
+
+                   <h3>Canela</h3>
+
+
+                    <p> Já reparou que estamos sempre percebendo quase tudo por meio da comunicação visual? Nossa visão
+                        é o sentido mais ativado, sem dúvidas.</p>
+
+                </div>
+            </div>
+
+            <div class="Aromas">
+
+                <img src="/img/aromas.jpg" alt="Bergamota" class="img">
+
+
+                <div class="berg">
+                   
+                   <h3>Bergamota</h3>
+
+
+                    <p>
+                        Já reparou que estamos sempre percebendo quase tudo por meio da comunicação visual? Nossa visão é o sentido mais ativado, sem dúvidas.
+                    </p>
+
+                </div>
+            </div>
+
+
+
+
+            
+        </section>
+
+
+
     </main>
+
+
+
+
+
+
+
     <footer>
         <section class="contact">
             <h2>Fale conosco!</h2>
@@ -63,23 +110,24 @@
                         <i class="fab fa-whatsapp"></i> (81) 98552-4376
                     </a>
                 </li>
-            
+
                 <li>
-                    <a class="link-contato" href="https://www.instagram.com/velas_candelae/"> 
+                    <a class="link-contato" href="https://www.instagram.com/velas_candelae/">
                         <i class="fab fa-instagram"></i> @velas_candelae
                     </a>
                 </li>
 
+
                 <li>
-                    <a class="link-contato" href = "mailto:velascandelae@gmail.com">
+                    <a class="link-contato" href="mailto:velascandelae@gmail.com">
                         <i class="far fa-envelope"></i> velascandelae@gmail.com
                     </a>
                 </li>
 
                 <li>
-                    <i class="fas fa-truck"></i>  Entregas em Recife e RMR
+                    <i class="fas fa-truck"></i> Entregas em Recife e RMR
                 </li>
-            </ul>            
+            </ul>
         </section>
         <div class="vertical-bar"></div>
         <section class="payment">
@@ -96,48 +144,13 @@
                 </li>
                 <li>
                     <i class="fab fa-cc-paypal"></i> PayPal
-                </li>           
+                </li>
             </ul>
         </section>
     </footer>
     <script src="https://kit.fontawesome.com/a27764f56e.js" crossorigin="anonymous"></script>
-    <script>
-        let cart = JSON.parse(localStorage.getItem("order"));
-        let produtos = "";
-        for (product of cart.products) {
-            produtos += `
-            <div class="product">
-                    <img src="${product.imgs}" alt="Vela">
-                    <div class="description">
-                        <p>${product.name}</p>
-                        <p>${product.scent}</p>
-                        <p class="value">R$ ${product.value},00</p>
-                    </div>
-                    <div class="quantity">
-                        <p class="qtd">Quantidade: ${product.quantProducts}</p>
-                        <p>Excluir</p>
-                    </div>
-            </div>
-            `
-        }
-        document.getElementById('carrinho').innerHTML = produtos
 
-        let sum = 0;
-        for (product of cart.products) {
-            sum += parseFloat(product.value) * parseFloat(product.quantProducts);
-        }
 
-        
-        let values = `
-                    <div class="value">
-                        <p><span>Subtotal (qtd itens):</span>R$ ${sum},00</p>
-                        <p><span>Frete:</span> R$ 0,00</p>
-                        <div class="horizontal-bar"></div>
-                        <p><span>Total:</span>R$ ${sum},00</p>
-                    </div>
-        `
-        document.querySelector(".finish").insertAdjacentHTML('afterbegin',values);
-
-    </script>
 </body>
+
 </html>

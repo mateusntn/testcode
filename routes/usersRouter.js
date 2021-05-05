@@ -4,7 +4,8 @@ const usersController = require('../controllers/usersController');
 const validateRegistration = require('../middlewares/validateRegistration');
 
 router.get('/', usersController.showLoginPage);
-router.post('/', validateRegistration, usersController.create);
+router.get('/:id', usersController.showProfilePage);
+router.post('/',  usersController.create);
 router.put('/:id', usersController.update);
 router.delete('/:id', usersController.delete);
 

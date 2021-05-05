@@ -1,6 +1,7 @@
 const { User } = require('../models')
 
 module.exports = async (request, response, next) => {
+    let error = document.querySelector("#error");
 
     let { register_name, register_email, phone, cpf, register_password, register_confirmation } = request.body;
 
