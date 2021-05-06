@@ -94,3 +94,20 @@ main h3 {
     width: 105px;
     text-align: right;
 }
+
+@media (max-width: 640px) {
+    main{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .profile{
+        width: 100%;
+        position: relative;
+    }
+    .historic{
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+    }
+}
