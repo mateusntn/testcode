@@ -10,7 +10,7 @@ const productsController = {
         if(req.session.userLoged){
             const { id } = req.session.userLoged;
             const user = await User.findByPk(id);
-            return res.render('index',{listProducts: products, user});
+            return res.render('index',{listProducts: products, user: user});
         } else{          
             return res.render('index',{listProducts: products});
         }

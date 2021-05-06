@@ -35,7 +35,7 @@ const usersController = {
         });
         const orderModified = orders.map(function(order) {
            const teste =order.toJSON()
-           teste.createdAt = moment(teste.createdAt).format('L');
+           teste.createdAt = moment(teste.createdAt).format('LLL');
             return teste ;
           });
           

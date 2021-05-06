@@ -112,6 +112,7 @@ main {
 }
 
 .purchase button {
+    margin-top: 20px;
     background-color: var(--color-button);
     color: #fff;
     border: none;

@@ -52,5 +52,7 @@
 }
 
 .message-progress a {
-    color: white;
+    color: var(--color-second);
+    text-decoration: underline;
+    font-weight: bold;
 }

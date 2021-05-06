@@ -17,9 +17,13 @@ const scentsController = {
     },
 
     showScentsPage: async (req, res) => {
-        const { id } = req.session.userLoged;
-        const user = await User.findByPk(id);
-        return res.render('scents', {user});
+        if(req.session.userLoged){
+            const { id } = req.session.userLoged;
+            const user = await User.findByPk(id);
+            return res.render('scents', {user});
+        } else{          
+            return res.render('scents');
+        }
     },
 
     create: async (req, res) => {
