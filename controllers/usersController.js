@@ -35,11 +35,11 @@ const usersController = {
         });
         const orderModified = orders.map(function(order) {
            const teste =order.toJSON()
-           teste.createdAt = moment(teste.createdAt).format(' MMMM Do YYYY as h:mm ')
+           teste.createdAt = moment(teste.createdAt).format('L');
             return teste ;
           });
           
-            //orders[index].createdAt = moment(orders[index].createdAt).format('MMMM Do YYYY, a');
+
         
         console.log(orders);
         return res.render('profile', {user, orders:orderModified})
