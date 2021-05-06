@@ -83,3 +83,20 @@ section img {
     width: 450px;
 }
 
+@media (max-width: 950px) {
+    main section .Aromas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    main section .Aromas:nth-child(2n) h3 {
+        text-align: center;
+    }
+
+    main section .Aromas img {
+        margin-bottom: 30px;
+    }
+}
+
