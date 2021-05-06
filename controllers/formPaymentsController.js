@@ -1,12 +1,13 @@
-const { FormPayment, sequelize} = require('../models');
+const { FormPayment, User, sequelize} = require('../models');
 
 const formPaymentsController = {
     index: async (req, res) => {
         const { id } = req.session.userLoged;
+        const user = await User.findByPk(id);
         const formPayments = await FormPayment.findAll(
             {where: {user_id_payment: id}
         });
-        return res.render('payment', {payments: formPayments});
+        return res.render('payment', {payments: formPayments, user});
     },
     create: async (req, res) => {
         const { titular_name, titular_cpf, card_number, card_code, card_valid } = req.body;

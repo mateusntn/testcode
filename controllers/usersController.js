@@ -1,5 +1,6 @@
 const { User, Order, sequelize} = require('../models/');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
 
 const usersController = {
     index: async (req, res) => {
@@ -32,8 +33,16 @@ const usersController = {
         const orders = await Order.findAll({
             where: {users_id: id}
         });
-
-        return res.render('profile', {user, orders})
+        const orderModified = orders.map(function(order) {
+           const teste =order.toJSON()
+           teste.createdAt = moment(teste.createdAt).format(' MMMM Do YYYY as h:mm ')
+            return teste ;
+          });
+          
+            //orders[index].createdAt = moment(orders[index].createdAt).format('MMMM Do YYYY, a');
+        
+        console.log(orders);
+        return res.render('profile', {user, orders:orderModified})
     },
 
     showEditPage: async (req,res) => {

@@ -1,13 +1,14 @@
-const { Adress, sequelize} = require('../models');
+const { Adress, User, sequelize} = require('../models');
 
 
 const adressController = {
     index: async (req, res) => {
         const { id } = req.session.userLoged;
+        const user = await User.findByPk(id);
         const adress = await Adress.findAll(
             {where: {user_id_adress: id}
         });
-        return res.render('adress', {adresses: adress});
+        return res.render('adress', {adresses: adress, user: user});
     },
     createAdress: async (req, res) => {
         const { cep, adress, number, complement, reference_point, neighborhood, city, state} = req.body;

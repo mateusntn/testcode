@@ -1,4 +1,4 @@
-const { Scent, sequelize} = require('../models');
+const { Scent, User, sequelize} = require('../models');
 
 const scentsController = {
     index: async (req, res) => {
@@ -7,11 +7,19 @@ const scentsController = {
     },
 
     showAboutPage: async (req,res) => {
-        return res.render('about')
+        if(req.session.userLoged){
+            const { id } = req.session.userLoged;
+            const user = await User.findByPk(id);
+            return res.render('about', {user});
+        } else{          
+            return res.render('about');
+        }
     },
 
     showScentsPage: async (req, res) => {
-        return res.render('scents');
+        const { id } = req.session.userLoged;
+        const user = await User.findByPk(id);
+        return res.render('scents', {user});
     },
 
     create: async (req, res) => {

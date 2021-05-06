@@ -1,4 +1,4 @@
-const { Order, sequelize} = require('../models/');
+const { Order, User, sequelize} = require('../models/');
 
 const ordersController = {
     index: async (req, res) => {
@@ -18,7 +18,9 @@ const ordersController = {
     },
 
     showCartPage: async (req,res) => {
-        return res.render('cart')
+        const { id } = req.session.userLoged;
+        const user = await User.findByPk(id);
+        return res.render('cart', {user});
     },
 
     create: async (req, res) => {
