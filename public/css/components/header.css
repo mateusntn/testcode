@@ -29,6 +29,7 @@ header .search .search-bar {
     border-radius: 10px;
     background-color: var(--color-bg);
     outline: none;
+    padding: 5px;
 }
 
 header .search button {

@@ -22,8 +22,8 @@ const ordersController = {
     },
 
     create: async (req, res) => {
-        const { shipping, amount, users_id, formPayments_id, order_status } = req.body;
-        const newOrder = await Order.create({shipping, amount, users_id, formPayments_id, order_status });
+        const { shipping, amount, users_id, formPayments_id, order_status, adress_id_orders } = req.body;
+        const newOrder = await Order.create({shipping, amount, users_id, formPayments_id, order_status, adress_id_orders });
         return res.json(newOrder);
     },
 
