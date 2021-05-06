@@ -74,8 +74,8 @@ h6 span{
     cursor: pointer;
     transition: 0.3s;
 }
-.dynamic_formpayment:hover,
-.dynamic_adress:hover{
+.dynamic_formpayment:hover, .dynamic_formpayment:active,
+.dynamic_adress:hover, .dynamic_adress:active{
     background-color: var(--color-first);
     color: var(--color-bg);
 }

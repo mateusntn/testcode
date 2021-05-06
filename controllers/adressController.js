@@ -14,7 +14,8 @@ const adressController = {
         const { cep, adress, number, complement, reference_point, neighborhood, city, state} = req.body;
         const  { id } = req.session.userLoged;
         const newAdress = await Adress.create({ cep, adress_street: adress, adress_number: number, complement, reference_point, neighborhood, city, state, user_id_adress: id});
-        return res.redirect('/adress');
+        console.log(newAdress);
+        return res.redirect('adress');
     },
     indexUpdate: async (req, res) => {
         const { id } = req.params;

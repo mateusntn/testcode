@@ -31,7 +31,7 @@
             </section>
             <article class="adress_choices">
                 <h1> Endereço</h1>
-                <form class="adress_choices" id="adress_choices" method="post" action="/adress">
+                <form class="adress_choices" id="adress_choices" method="POST" action="/adress">
                     <label for="cep">CEP: </label>
                         <input type="text" name="cep" id="cep" required>
                     <label for="adress">Rua: </label>
@@ -54,7 +54,7 @@
                         <input type="text" name="city" id="city" required>
                     <label for="state">Estado: </label>
                         <input type="text" name="state" id="state" required>  
-                    <button type="submit" id="add_adress" onclick="addFormPayment()">
+                    <button type="submit" id="add_adress">
                         Adicionar novo endereço
                     </button>
                 </form>
@@ -143,12 +143,6 @@
             });
 
         }
-    </script>
-    <script>
-        document.querySelector("#adress_choices").addEventListener("submit", (event) => {
-            event.preventDefault();
-        window.location.reload(true) 
-        });
     </script>
 </body>
 </html>
